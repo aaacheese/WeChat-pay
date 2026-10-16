@@ -1,0 +1,67 @@
+.checkin-card {
+  position: relative;
+}
+
+.success.signed {
+  padding-inline: 10px;
+  color: #08c060;
+  background: transparent;
+}
+
+.success:disabled {
+  cursor: default;
+}
+
+.day.muted {
+  color: #ccc;
+}
+
+.day.muted .day-icon {
+  background: #efeff4;
+}
+
+.day.muted .day-icon img {
+  filter: grayscale(1);
+  opacity: 0.35;
+}
+
+.day.muted .day-icon small {
+  color: #ccc;
+}
+
+.day.earned .day-icon {
+  background: linear-gradient(150deg, #b1fecd, #d4fec0);
+}
+
+.day.earned .day-icon span {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #13d776;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+
+.day.earned .day-icon small {
+  color: #06b75b;
+}
+
+.checkin-toast {
+  position: absolute;
+  z-index: 3;
+  top: 37px;
+  left: 50%;
+  width: 118px;
+  padding: 9px 18px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgb(0 0 0 / 70%);
+  color: #fff;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}

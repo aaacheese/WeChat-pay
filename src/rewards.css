@@ -1,0 +1,270 @@
+.rewards {
+  position: relative;
+  width: 393px;
+  height: 687px;
+  min-height: 687px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background: #fff;
+}
+
+.rewards-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.tabs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 44px;
+  align-items: center;
+  padding: 0 8px 0 18px;
+  overflow: hidden;
+}
+
+.tabs button {
+  flex: 0 0 auto;
+  height: 44px;
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: rgb(0 0 0 / 45%);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tabs button.selected {
+  width: 83px;
+  height: 32px;
+  border-radius: 34px;
+  background: #deffee;
+  color: rgb(0 0 0 / 80%);
+  font-weight: 500;
+}
+
+.reward-rows {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.reward-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.reward-row-second {
+  gap: 13px;
+}
+
+.reward-card {
+  position: relative;
+  width: 174px;
+  height: 267px;
+  flex: 0 0 174px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.reward-visual {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 174px;
+  height: 172px;
+  border-radius: 8px 8px 0 0;
+  background: #059c9d;
+  overflow: hidden;
+}
+
+.reward-card.wechat .reward-visual {
+  background: linear-gradient(134.54deg, #77dea9 0%, #29c876 108.38%);
+}
+
+.reward-watsons-art {
+  position: absolute;
+  top: 43px;
+  left: 8px;
+  display: block;
+}
+
+.limited {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 71px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 8px 0 8px 0;
+  background: linear-gradient(105.05deg, #ff5e00 1.55%, #f18567 98.45%);
+  color: #f3fff3;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+}
+
+.reward-wechat-glass {
+  position: absolute;
+  top: 22px;
+  left: 10px;
+  width: 153px;
+  height: 127px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 20%);
+}
+
+.reward-wechat-art > img {
+  position: absolute;
+  top: 44px;
+  left: 59px;
+  display: block;
+}
+
+.reward-wechat-art > span {
+  position: absolute;
+  top: 110px;
+  left: 26px;
+  color: #f3fff3;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.reward-body {
+  position: absolute;
+  top: 179px;
+  left: 8px;
+  display: flex;
+  width: 158px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.reward-description {
+  display: flex;
+  width: 147px;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: -0.48px;
+}
+
+.reward-description small {
+  color: #888;
+  font-size: 12px;
+}
+
+.reward-description p {
+  margin: 0;
+  color: #333;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.reward-action-row {
+  display: flex;
+  width: 158px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.reward-price {
+  display: flex;
+  height: 29px;
+  align-items: baseline;
+  gap: 1px;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.reward-price span {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.reward-price b {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.reward-redeem {
+  display: flex;
+  height: 26px;
+  align-items: center;
+  padding: 0 0 0 10px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 28px;
+  background: #f3fff3;
+}
+
+.reward-points {
+  display: flex;
+  align-items: center;
+  color: #06b75b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.reward-points img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.reward-claim {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 26px;
+}
+
+.reward-claim > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.reward-claim i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #f3fff3;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 430px) {
+  .rewards {
+    width: 100%;
+  }
+}

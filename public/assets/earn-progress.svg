@@ -1,0 +1,44 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="330.5" height="20" viewBox="0 0 330.5 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2053143410">
+<line id="Line 1" x1="18.3612" y1="9.50022" x2="158.11" y2="9.50022" stroke="#BBFFBA" stroke-opacity="0.42" stroke-width="11"/>
+<line id="Line 2" x1="172.39" y1="9.50022" x2="312.139" y2="9.50022" stroke="#F5F5F5" stroke-width="11"/>
+<g id="Group 4">
+<circle id="Ellipse 1" cx="242.675" cy="10" r="9.5" fill="#DEFFDA" stroke="white"/>
+</g>
+<g id="Group 5">
+<circle id="Ellipse 1_2" cx="320.5" cy="10" r="9.5" fill="#DEFFDA" stroke="white"/>
+</g>
+<g id="Group 1">
+<circle id="Ellipse 1_3" cx="10" cy="10" r="10" fill="url(#paint0_linear_0_80)"/>
+<g id="Frame">
+<path id="Vector" d="M8.74977 14.7939C8.56227 14.7939 8.43727 14.7314 8.31227 14.6064L5.18727 11.4814C4.93727 11.2314 4.93727 10.8564 5.18727 10.6064C5.43727 10.3564 5.81227 10.3564 6.06227 10.6064L8.74977 13.2939L15.1873 6.85637C15.4373 6.60637 15.8123 6.60637 16.0623 6.85637C16.3123 7.10637 16.3123 7.48137 16.0623 7.73137L9.18727 14.6064C9.06227 14.7314 8.93727 14.7939 8.74977 14.7939Z" fill="white"/>
+</g>
+</g>
+<g id="Group 2053143409">
+<ellipse id="Ellipse 1_4" cx="165.25" cy="10" rx="10.2006" ry="10" fill="url(#paint1_linear_0_80)"/>
+<g id="Frame_2">
+<path id="Vector_2" d="M163.635 14.4593C163.444 14.4593 163.317 14.3968 163.189 14.2718L160.001 11.1468C159.746 10.8968 159.746 10.5218 160.001 10.2718C160.256 10.0218 160.639 10.0218 160.894 10.2718L163.635 12.9593L170.202 6.52182C170.457 6.27182 170.84 6.27182 171.095 6.52182C171.35 6.77182 171.35 7.14682 171.095 7.39682L164.082 14.2718C163.954 14.3968 163.827 14.4593 163.635 14.4593Z" fill="white"/>
+</g>
+</g>
+<g id="Group 2">
+<circle id="Ellipse 1_5" cx="87.6256" cy="10" r="10" fill="url(#paint2_linear_0_80)"/>
+<g id="Frame_3">
+<path id="Vector_3" d="M86.375 14.7939C86.1875 14.7939 86.0625 14.7314 85.9375 14.6064L82.8125 11.4814C82.5625 11.2314 82.5625 10.8564 82.8125 10.6064C83.0625 10.3564 83.4375 10.3564 83.6875 10.6064L86.375 13.2939L92.8125 6.85641C93.0625 6.60641 93.4375 6.60641 93.6875 6.85641C93.9375 7.10641 93.9375 7.48141 93.6875 7.73141L86.8125 14.6064C86.6875 14.7314 86.5625 14.7939 86.375 14.7939Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_80" x1="2.50002" y1="0" x2="10" y2="20" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00D767"/>
+<stop offset="1" stop-color="#1CEE81"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_80" x1="157.6" y1="3.62396e-05" x2="164.988" y2="20.0965" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00D767"/>
+<stop offset="1" stop-color="#1CEE81"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_80" x1="80.1256" y1="3.62396e-05" x2="87.6256" y2="20" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00D767"/>
+<stop offset="1" stop-color="#1CEE81"/>
+</linearGradient>
+</defs>
+</svg>

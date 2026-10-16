@@ -1,0 +1,281 @@
+.reward-mode-tabs {
+  position: relative;
+  z-index: 2;
+  height: 50px;
+}
+
+.reward-mode-tab {
+  position: absolute;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #b2b2b2;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.reward-mode-tab.active {
+  color: #333;
+  font-weight: 600;
+}
+
+.reward-mode-tab > span {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  line-height: 18px;
+}
+
+.reward-mode-tab > img {
+  display: block;
+}
+
+.reward-mode-redeem {
+  left: 67px;
+  width: 64px;
+}
+
+.reward-mode-earn {
+  left: 247px;
+  width: 96px;
+}
+
+.rewards.earn-mode {
+  height: 701px;
+  min-height: 701px;
+}
+
+.earn-mode .rewards-panel {
+  top: 0;
+  left: 0;
+  transform: scaleX(-1);
+}
+
+.earn-panel-content {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+
+.earn-mission {
+  position: absolute;
+  top: 52px;
+  left: 17px;
+  display: flex;
+  width: 359px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.earn-exclusive {
+  display: flex;
+  width: 78px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  background: #fff6bb;
+  color: #de9b00;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+
+.earn-mission-card {
+  display: flex;
+  width: 359px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+}
+
+.earn-mission-row {
+  display: flex;
+  width: 359px;
+  height: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.earn-mission-copy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #000;
+  font-size: 16px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.earn-mission-points {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.earn-mission-points img {
+  display: block;
+  width: 22.5px;
+  height: 20.5px;
+  object-fit: cover;
+}
+
+.earn-orders-left {
+  display: flex;
+  width: 81px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 14px;
+  letter-spacing: -0.56px;
+}
+
+.earn-progress {
+  display: block;
+}
+
+.earn-category-crop {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  width: 393px;
+  height: 44px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.earn-category-crop img {
+  position: absolute;
+  top: -380.24px;
+  left: -622.08px;
+  display: block;
+  width: 1641.48px;
+  height: 1064.56px;
+  max-width: none;
+}
+
+.earn-task-list {
+  position: absolute;
+  top: 210px;
+  left: 17px;
+  display: flex;
+  width: 359px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.earn-task-block {
+  display: flex;
+  width: 359px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.earn-task {
+  display: flex;
+  width: 359px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.earn-task-main {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.earn-task-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 23px;
+  background: #fff;
+}
+
+.earn-task-icon img {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: block;
+}
+
+.earn-task-copy {
+  display: flex;
+  width: 225px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.earn-task-copy p {
+  width: 225px;
+  margin: 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+  white-space: nowrap;
+}
+
+.earn-task-copy > div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #faad14;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.64px;
+}
+
+.earn-task-copy img {
+  display: block;
+  width: 22.5px;
+  height: 20.5px;
+  object-fit: cover;
+}
+
+.earn-remaining {
+  color: #999;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.56px;
+  white-space: nowrap;
+}
+
+.earn-signup {
+  display: flex;
+  width: 56px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 36px;
+  background: #08c060;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: -0.48px;
+}
+
+.earn-signup:active {
+  opacity: 0.72;
+}
+
+.earn-divider {
+  display: block;
+}
