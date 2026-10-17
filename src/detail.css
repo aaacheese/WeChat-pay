@@ -12,13 +12,12 @@
   z-index: 2000;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: 0;
   width: min(393px, 100vw);
   height: 100dvh;
   overflow: hidden;
   overscroll-behavior: none;
   touch-action: none;
-  transform: translateX(-50%);
 }
 
 .voucher-detail-scrim {

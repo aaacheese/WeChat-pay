@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import './hero.css'
@@ -321,13 +321,15 @@ function MainlandRewards({ onOpenDetail }) {
 }
 
 function VoucherDetail({ onClose }) {
+  const overlayRef = useRef(null)
   const closeRef = useRef(null)
   const earnRef = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const scrollY = window.scrollY
     const body = document.body
     const html = document.documentElement
+    const phone = document.querySelector('.phone')
     const previousBody = {
       position: body.style.position,
       top: body.style.top,
@@ -345,6 +347,18 @@ function VoucherDetail({ onClose }) {
     body.style.width = '100%'
     body.style.overflow = 'hidden'
     html.style.overflow = 'hidden'
+
+    const alignOverlayToPhone = () => {
+      if (!phone || !overlayRef.current) return
+      const phoneRect = phone.getBoundingClientRect()
+      overlayRef.current.style.left = `${phoneRect.left}px`
+      overlayRef.current.style.width = `${phoneRect.width}px`
+    }
+
+    alignOverlayToPhone()
+    const resizeObserver = new ResizeObserver(alignOverlayToPhone)
+    if (phone) resizeObserver.observe(phone)
+    window.addEventListener('resize', alignOverlayToPhone)
     closeRef.current?.focus()
 
     const handleKeyDown = (event) => {
@@ -367,6 +381,8 @@ function VoucherDetail({ onClose }) {
     document.addEventListener('keydown', handleKeyDown)
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('resize', alignOverlayToPhone)
+      resizeObserver.disconnect()
       Object.assign(body.style, previousBody)
       html.style.overflow = previousHtmlOverflow
       window.scrollTo(0, scrollY)
@@ -374,7 +390,7 @@ function VoucherDetail({ onClose }) {
   }, [onClose])
 
   return (
-    <div className="voucher-detail-overlay" role="dialog" aria-modal="true" aria-label="優惠券詳情">
+    <div className="voucher-detail-overlay" role="dialog" aria-modal="true" aria-label="優惠券詳情" ref={overlayRef}>
       <div className="voucher-detail-scrim" aria-hidden="true" />
       <section className="voucher-detail-sheet">
         <div className="voucher-detail-screenshot" aria-hidden="true"><img src={`${A}voucher-detail-bg.png`} alt="" /></div>
