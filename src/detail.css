@@ -1,0 +1,285 @@
+.reward-card.watsons.is-interactive {
+  cursor: pointer;
+}
+
+.reward-card.watsons.is-interactive:focus-visible {
+  outline: 2px solid #06b75b;
+  outline-offset: 2px;
+}
+
+.voucher-detail-overlay {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(393px, 100vw);
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  transform: translateX(-50%);
+}
+
+.voucher-detail-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 60%);
+}
+
+.voucher-detail-sheet {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: calc(100% + 1px);
+  height: 488px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  background: #fff;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang HK", "PingFang SC", "Microsoft JhengHei", sans-serif;
+}
+
+.voucher-detail-screenshot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.voucher-detail-screenshot img {
+  position: absolute;
+  top: -83.4%;
+  left: -111.68%;
+  width: 383.76%;
+  height: 201.23%;
+  max-width: none;
+}
+
+.voucher-detail-close {
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  left: 8px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.voucher-detail-close::before,
+.voucher-detail-close::after {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  width: 18px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: #333;
+  content: "";
+}
+
+.voucher-detail-close::before {
+  transform: rotate(45deg);
+}
+
+.voucher-detail-close::after {
+  transform: rotate(-45deg);
+}
+
+.voucher-detail-close:focus-visible,
+.voucher-detail-earn:focus-visible {
+  outline: 2px solid #06b75b;
+  outline-offset: 2px;
+}
+
+.voucher-detail-name-patch {
+  position: absolute;
+  top: 62px;
+  left: 49px;
+  display: flex;
+  width: 80px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.voucher-detail-merchant-icon {
+  position: absolute;
+  top: 67px;
+  left: 18px;
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.voucher-detail-voucher {
+  position: absolute;
+  top: 111px;
+  left: 18px;
+  width: 359px;
+  height: 89px;
+  border-radius: 4px;
+  background: #effbf5;
+}
+
+.voucher-detail-price-shape {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  display: block;
+  width: 82px;
+  height: 87px;
+}
+
+.voucher-detail-main-price {
+  position: absolute;
+  top: 27px;
+  left: 20px;
+  display: flex;
+  height: 29px;
+  align-items: baseline;
+  gap: 1px;
+  color: #f76260;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.voucher-detail-main-price span {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.voucher-detail-main-price b {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.voucher-detail-voucher-name {
+  position: absolute;
+  top: 32px;
+  left: 94px;
+  margin: 0;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.voucher-detail-old-price-patch {
+  position: absolute;
+  top: 138px;
+  left: 36px;
+  width: 48px;
+  height: 30px;
+  background: #fff;
+}
+
+.voucher-detail-footer-patch {
+  position: absolute;
+  top: 349px;
+  left: 19px;
+  width: 357px;
+  height: 88px;
+  background: #fff;
+}
+
+.voucher-detail-footer {
+  position: absolute;
+  top: 389px;
+  left: 18px;
+  z-index: 2;
+  display: flex;
+  width: 357px;
+  height: 51px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.voucher-detail-points {
+  display: flex;
+  width: 108px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.voucher-detail-points-row {
+  display: flex;
+  width: 108px;
+  height: 28px;
+  align-items: center;
+  gap: 8px;
+}
+
+.voucher-detail-current-points {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.voucher-detail-current-points img {
+  width: 27px;
+  height: 27px;
+  object-fit: cover;
+}
+
+.voucher-detail-current-points b {
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.voucher-detail-points del {
+  color: #b2b2b2;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.voucher-detail-points > span {
+  width: 92px;
+  color: #333;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.voucher-detail-earn {
+  display: flex;
+  width: 126px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: 36px;
+  background: linear-gradient(90deg, #21dd7c, #1bc76e);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.64px;
+  white-space: nowrap;
+}
+
+.voucher-detail-earn:active {
+  filter: brightness(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .voucher-detail-earn {
+    transition: none;
+  }
+}

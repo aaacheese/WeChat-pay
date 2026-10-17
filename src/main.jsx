@@ -6,6 +6,7 @@ import './checkin.css'
 import './rewards.css'
 import './earn.css'
 import './mainland.css'
+import './detail.css'
 import './project-switcher.css'
 
 const A = '/assets/'
@@ -168,10 +169,25 @@ function SpendingCard() {
   )
 }
 
-function RewardCard({ kind = 'watsons', showLimited = true }) {
+function RewardCard({ kind = 'watsons', showLimited = true, onOpenDetail }) {
   const green = kind === 'wechat'
+  const interactive = !green && Boolean(onOpenDetail)
+  const openWithKeyboard = (event) => {
+    if (event.target !== event.currentTarget) return
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      onOpenDetail(event)
+    }
+  }
   return (
-    <article className={`reward-card ${green ? 'wechat' : 'watsons'}`}>
+    <article
+      className={`reward-card ${green ? 'wechat' : 'watsons'} ${interactive ? 'is-interactive' : ''}`}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? '查看屈臣氏HK$5專屬電子現金券詳情' : undefined}
+      onClick={interactive ? onOpenDetail : undefined}
+      onKeyDown={interactive ? openWithKeyboard : undefined}
+    >
       <div className="reward-visual">
         {green ? (
           <div className="reward-wechat-art">
@@ -190,10 +206,13 @@ function RewardCard({ kind = 'watsons', showLimited = true }) {
         <div className="reward-description"><small>屈臣氏</small><p>屈臣氏HK$5專屬電子現金券</p></div>
         <div className="reward-action-row">
           <div className="reward-price"><span>HK$</span><b>5</b></div>
-          <button className="reward-redeem" type="button" aria-label="使用 2500 積分搶購">
+          {green ? <button className="reward-redeem" type="button" aria-label="使用 2500 積分搶購">
             <span className="reward-points">2500<img src={`${A}reward-coin.png`} alt="積分" /></span>
             <span className="reward-claim"><img src={`${A}reward-cta.svg`} alt="" /><i>搶</i></span>
-          </button>
+          </button> : <span className="reward-redeem" aria-hidden="true">
+            <span className="reward-points">2500<img src={`${A}reward-coin.png`} alt="" /></span>
+            <span className="reward-claim"><img src={`${A}reward-cta.svg`} alt="" /><i>搶</i></span>
+          </span>}
         </div>
       </div>
     </article>
@@ -277,12 +296,95 @@ function MerchantVoucherGroup({ kind, title, items }) {
   )
 }
 
-function MainlandRewards() {
+function MainlandRewards({ onOpenDetail }) {
   return (
     <div className="mainland-rewards" id="redeem-rewards-panel" role="tabpanel" aria-labelledby="redeem-rewards-tab">
       <MerchantVoucherGroup kind="douyin" title="抖音禮券" items={mainlandDouyinItems} />
       <MerchantVoucherGroup kind="jd" title="京東禮券" items={mainlandJdItems} />
-      <div className="mainland-large-cards"><RewardCard showLimited={false} /><RewardCard kind="wechat" /></div>
+      <div className="mainland-large-cards"><RewardCard showLimited={false} onOpenDetail={onOpenDetail} /><RewardCard kind="wechat" /></div>
+    </div>
+  )
+}
+
+function VoucherDetail({ onClose }) {
+  const closeRef = useRef(null)
+  const earnRef = useRef(null)
+
+  useEffect(() => {
+    const scrollY = window.scrollY
+    const body = document.body
+    const html = document.documentElement
+    const previousBody = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    }
+    const previousHtmlOverflow = html.style.overflow
+
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.width = '100%'
+    body.style.overflow = 'hidden'
+    html.style.overflow = 'hidden'
+    closeRef.current?.focus()
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        onClose()
+        return
+      }
+      if (event.key !== 'Tab') return
+
+      if (event.shiftKey && document.activeElement === closeRef.current) {
+        event.preventDefault()
+        earnRef.current?.focus()
+      } else if (!event.shiftKey && document.activeElement === earnRef.current) {
+        event.preventDefault()
+        closeRef.current?.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      Object.assign(body.style, previousBody)
+      html.style.overflow = previousHtmlOverflow
+      window.scrollTo(0, scrollY)
+    }
+  }, [onClose])
+
+  return (
+    <div className="voucher-detail-overlay" role="dialog" aria-modal="true" aria-label="優惠券詳情">
+      <div className="voucher-detail-scrim" aria-hidden="true" />
+      <section className="voucher-detail-sheet">
+        <div className="voucher-detail-screenshot" aria-hidden="true"><img src={`${A}voucher-detail-bg.png`} alt="" /></div>
+        <button className="voucher-detail-close" type="button" aria-label="關閉優惠券詳情" onClick={onClose} ref={closeRef} />
+        <div className="voucher-detail-name-patch">屈臣氏</div>
+        <img className="voucher-detail-merchant-icon" src={`${A}voucher-detail-watsons.svg`} alt="屈臣氏" />
+        <div className="voucher-detail-old-price-patch" aria-hidden="true" />
+        <div className="voucher-detail-voucher">
+          <img className="voucher-detail-price-shape" src={`${A}voucher-detail-price.svg`} alt="" />
+          <div className="voucher-detail-main-price"><span>HK$</span><b>5</b></div>
+          <p className="voucher-detail-voucher-name">HK$5 屈臣氏專屬電子現金券</p>
+        </div>
+        <div className="voucher-detail-footer-patch" aria-hidden="true" />
+        <div className="voucher-detail-footer">
+          <div className="voucher-detail-points">
+            <div className="voucher-detail-points-row">
+              <span className="voucher-detail-current-points"><img src={`${A}reward-coin.png`} alt="積分" /><b>600</b></span>
+              <del>2000</del>
+            </div>
+            <span>還差300積分</span>
+          </div>
+          <button className="voucher-detail-earn" type="button" ref={earnRef}>立即賺積分</button>
+        </div>
+      </section>
     </div>
   )
 }
@@ -336,8 +438,19 @@ function EarnPointsPanel() {
 function Rewards() {
   const [mode, setMode] = useState('redeem')
   const [tab, setTab] = useState(0)
+  const [detailOpen, setDetailOpen] = useState(false)
+  const detailOpenerRef = useRef(null)
   const labels = ['限時搶購', '我能兌換', '內地優惠', '本港優惠', '匯款/繳費']
+  const openDetail = (event) => {
+    detailOpenerRef.current = event.currentTarget
+    setDetailOpen(true)
+  }
+  const closeDetail = React.useCallback(() => {
+    setDetailOpen(false)
+    window.requestAnimationFrame(() => detailOpenerRef.current?.focus())
+  }, [])
   return (
+    <>
     <section className={`rewards ${mode === 'earn' ? 'earn-mode' : ''} ${mode === 'redeem' && tab === 2 ? 'mainland-mode' : ''}`}>
       <img className="rewards-panel" src={`${A}${mode === 'earn' ? 'earn-panel.svg' : 'reward-panel.svg'}`} alt="" />
       <div className="reward-mode-tabs" role="tablist" aria-label="積分功能">
@@ -350,12 +463,14 @@ function Rewards() {
       </div>
       {mode === 'redeem' ? <>
         <div className="tabs">{labels.map((label, i) => <button type="button" className={tab === i ? 'selected' : ''} onClick={() => setTab(i)} key={label}>{label}</button>)}</div>
-        {tab === 2 ? <MainlandRewards /> : <div className="reward-rows" id="redeem-rewards-panel" role="tabpanel" aria-labelledby="redeem-rewards-tab">
-          <div className="reward-row"><RewardCard /><RewardCard kind="wechat" /></div>
-          <div className="reward-row reward-row-second"><RewardCard /><RewardCard kind="wechat" /></div>
+        {tab === 2 ? <MainlandRewards onOpenDetail={openDetail} /> : <div className="reward-rows" id="redeem-rewards-panel" role="tabpanel" aria-labelledby="redeem-rewards-tab">
+          <div className="reward-row"><RewardCard onOpenDetail={openDetail} /><RewardCard kind="wechat" /></div>
+          <div className="reward-row reward-row-second"><RewardCard onOpenDetail={openDetail} /><RewardCard kind="wechat" /></div>
         </div>}
       </> : <EarnPointsPanel />}
     </section>
+    {detailOpen && <VoucherDetail onClose={closeDetail} />}
+    </>
   )
 }
 
