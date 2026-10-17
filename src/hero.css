@@ -1,0 +1,223 @@
+.top-gradient {
+  height: 683px;
+}
+
+.points-hero {
+  position: relative;
+  width: 359px;
+  height: 142px;
+}
+
+.hero-shape {
+  position: absolute;
+  top: 17px;
+  left: 0;
+  width: 359px;
+  height: 125px;
+}
+
+.hero-content {
+  position: absolute;
+  top: 28px;
+  left: 10px;
+  width: 339px;
+  height: 114px;
+}
+
+.hero-balance {
+  position: relative;
+  z-index: 2;
+  width: 180px;
+  height: 58px;
+}
+
+.hero-balance-title {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  color: #333;
+  font-family: "PingFang HK", "PingFang SC", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.hero-balance-title img {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  transform: rotate(180deg);
+}
+
+.hero-balance-row {
+  display: flex;
+  width: 180px;
+  height: 34px;
+  align-items: flex-end;
+  margin-top: 4px;
+  gap: 9px;
+}
+
+.points-total {
+  display: flex;
+  width: 82px;
+  height: 34px;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.points-total img {
+  width: 24px;
+  height: 27px;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.points-total b {
+  width: 54px;
+  height: 34px;
+  color: #000;
+  font-family: "PingFang SC", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 34px;
+}
+
+.hero-rate {
+  height: 14px;
+  color: #06b75b;
+  font-family: "PingFang HK", "PingFang SC", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
+
+.hero-bottom {
+  position: absolute;
+  top: 78px;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  width: 339px;
+  height: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.earn-pill {
+  position: static;
+  display: flex;
+  width: 231px;
+  height: 24px;
+  align-items: center;
+  padding: 2px 16px;
+  border-radius: 24px;
+  background: #e6ffe4;
+  color: #000;
+  white-space: nowrap;
+}
+
+.earn-pill-brand {
+  display: flex;
+  height: 20px;
+  align-items: flex-start;
+  font-family: "PingFang SC", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.56px;
+}
+
+.earn-pill-brand span {
+  color: #00cc5b;
+}
+
+.earn-pill-brand sup {
+  position: relative;
+  top: 1px;
+  color: #000;
+  font-size: 4px;
+  font-weight: 600;
+  line-height: 6px;
+  letter-spacing: -0.16px;
+}
+
+.earn-pill-copy {
+  margin-left: 3px;
+  font-family: "PingFang HK", "PingFang SC", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.claimed-coupons {
+  display: flex;
+  height: 17px;
+  align-items: center;
+  color: #333;
+  font-family: "PingFang HK", "PingFang SC", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: -0.48px;
+  white-space: nowrap;
+}
+
+.claimed-coupons img {
+  width: 12px;
+  height: 12px;
+  transform: rotate(180deg);
+}
+
+.hero-hand-wrap {
+  position: absolute;
+  top: -30px;
+  left: 203px;
+  z-index: 1;
+  display: flex;
+  width: 132.434px;
+  height: 107.924px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-hand {
+  display: block;
+  width: 127px;
+  height: 101px;
+  object-fit: cover;
+  transform: rotate(-3.2deg);
+}
+
+.hero-decoration {
+  position: absolute;
+  top: 0;
+  left: 125.44px;
+  display: flex;
+  width: 106.894px;
+  height: 90.43px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.24;
+  pointer-events: none;
+}
+
+.hero-decoration-crop {
+  position: relative;
+  width: 90.889px;
+  height: 64.277px;
+  overflow: hidden;
+  transform: rotate(19.06deg);
+}
+
+.hero-decoration-crop img {
+  position: absolute;
+  top: -105.62%;
+  left: -39.19%;
+  width: 364.82%;
+  height: 497.63%;
+  max-width: none;
+}

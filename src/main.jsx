@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
+import './hero.css'
 import './checkin.css'
 import './rewards.css'
 import './earn.css'
@@ -38,20 +39,25 @@ function Header() {
 function PointsHero() {
   return (
     <section className="points-hero">
-      <img className="hero-shape" src={`${A}vector-14.svg`} alt="" />
-      <img className="hero-coins" src={`${A}raw-02.png`} alt="" />
-      <img
-        className="hero-hand"
-        src={`${A}raw-10.png`}
-        alt=""
-        style={{ right: '15px', width: '145px', height: 'auto', display: 'block' }}
-      />
-      <div className="hero-copy">
-        <span>我的積分</span>
-        <div className="points-total"><img src={`${A}raw-09.png`} alt="" /><b>609</b></div>
+      <img className="hero-shape" src={`${A}hero-panel.svg`} alt="" />
+      <div className="hero-decoration" aria-hidden="true"><div className="hero-decoration-crop"><img src={`${A}hero-coins.png`} alt="" /></div></div>
+      <div className="hero-content">
+        <div className="hero-balance">
+          <div className="hero-balance-title">我的積分<img src={`${A}hero-arrow-dark.svg`} alt="" /></div>
+          <div className="hero-balance-row">
+            <div className="points-total"><img src={`${A}hero-coin.png`} alt="" /><b>609</b></div>
+            <span className="hero-rate">消费 HK$1=赚 1 积分</span>
+          </div>
+        </div>
+        <div className="hero-bottom">
+          <div className="earn-pill">
+            <span className="earn-pill-brand">We<span>Points</span><sup>TM</sup></span>
+            <span className="earn-pill-copy">积分当钱花，付款直接抵</span>
+          </div>
+          <span className="claimed-coupons">已領優惠券<img src={`${A}hero-arrow.svg`} alt="" /></span>
+        </div>
+        <div className="hero-hand-wrap" aria-hidden="true"><img className="hero-hand" src={`${A}hero-hand.png`} alt="" /></div>
       </div>
-      <div className="earn-pill"><b>賺 We<span>Points</span></b><small> 消費HK$1=1</small></div>
-      <div className="hero-links"><span>今日已賺積分 100</span><span>已領優惠券 ›</span><span>積分紀錄 ›</span></div>
     </section>
   )
 }
