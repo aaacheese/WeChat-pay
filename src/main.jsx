@@ -8,6 +8,8 @@ import './earn.css'
 import './mainland.css'
 import './detail.css'
 import './project-switcher.css'
+import './prototype-guide.css'
+import { PrototypeExperienceProvider, PrototypeGuide, usePrototypeExperience } from './prototype-experience'
 
 const A = '/assets/'
 
@@ -66,6 +68,7 @@ function PointsHero() {
 const checkins = [10, 10, 50, 30, 50, 50, 100]
 
 function CheckinCard() {
+  const { completeStep } = usePrototypeExperience()
   const [reminder, setReminder] = useState(false)
   const [checkedIn, setCheckedIn] = useState(false)
   const [showCheckinToast, setShowCheckinToast] = useState(false)
@@ -76,6 +79,7 @@ function CheckinCard() {
   const handleCheckin = () => {
     if (checkedIn) return
     setCheckedIn(true)
+    completeStep(1)
     setShowCheckinToast(true)
     window.clearTimeout(toastTimer.current)
     toastTimer.current = window.setTimeout(() => setShowCheckinToast(false), 1000)
@@ -102,6 +106,7 @@ function CheckinCard() {
 }
 
 function SpendingCard() {
+  const { completeStep } = usePrototypeExperience()
   const stripRef = useRef(null)
   const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 })
   const coupons = [
@@ -127,6 +132,7 @@ function SpendingCard() {
     const strip = stripRef.current
     if (!strip || !dragRef.current.active) return
     strip.scrollLeft = dragRef.current.scrollLeft - (event.clientX - dragRef.current.startX)
+    if (Math.abs(event.clientX - dragRef.current.startX) >= 12) completeStep(2)
     event.preventDefault()
   }
 
@@ -147,6 +153,9 @@ function SpendingCard() {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onDragStart={(event) => event.preventDefault()}
+        onScroll={(event) => {
+          if (event.currentTarget.scrollLeft >= 12) completeStep(2)
+        }}
       >
         {coupons.map(({ value, points, special }, index) => (
           <article className="coupon-ticket" key={`${value}-${index}`}>
@@ -251,6 +260,7 @@ function MerchantVoucher({ merchant, value, points, width }) {
 }
 
 function MerchantVoucherGroup({ kind, title, items }) {
+  const { completeStep } = usePrototypeExperience()
   const trackRef = useRef(null)
   const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 })
 
@@ -266,6 +276,7 @@ function MerchantVoucherGroup({ kind, title, items }) {
     const track = trackRef.current
     if (!track || !dragRef.current.active) return
     track.scrollLeft = dragRef.current.scrollLeft - (event.clientX - dragRef.current.startX)
+    if (Math.abs(event.clientX - dragRef.current.startX) >= 12) completeStep(2)
     event.preventDefault()
   }
 
@@ -288,6 +299,9 @@ function MerchantVoucherGroup({ kind, title, items }) {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onDragStart={(event) => event.preventDefault()}
+        onScroll={(event) => {
+          if (event.currentTarget.scrollLeft >= 12) completeStep(2)
+        }}
         aria-label={`${title}，可橫向滑動`}
       >
         {items.map((item, index) => <MerchantVoucher {...item} key={`${kind}-${index}`} />)}
@@ -436,6 +450,7 @@ function EarnPointsPanel() {
 }
 
 function Rewards() {
+  const { completeStep } = usePrototypeExperience()
   const [mode, setMode] = useState('redeem')
   const [tab, setTab] = useState(0)
   const [detailOpen, setDetailOpen] = useState(false)
@@ -444,25 +459,34 @@ function Rewards() {
   const openDetail = (event) => {
     detailOpenerRef.current = event.currentTarget
     setDetailOpen(true)
+    completeStep(3)
   }
   const closeDetail = React.useCallback(() => {
     setDetailOpen(false)
     window.requestAnimationFrame(() => detailOpenerRef.current?.focus())
   }, [])
+  const selectRewardTab = (index) => {
+    setTab(index)
+    if (index === 2) completeStep(4)
+  }
+  const selectMode = (nextMode) => {
+    setMode(nextMode)
+    if (nextMode === 'earn') completeStep(5)
+  }
   return (
     <>
     <section className={`rewards ${mode === 'earn' ? 'earn-mode' : ''} ${mode === 'redeem' && tab === 2 ? 'mainland-mode' : ''}`}>
       <img className="rewards-panel" src={`${A}${mode === 'earn' ? 'earn-panel.svg' : 'reward-panel.svg'}`} alt="" />
       <div className="reward-mode-tabs" role="tablist" aria-label="積分功能">
-        <button id="redeem-rewards-tab" className={`reward-mode-tab reward-mode-redeem ${mode === 'redeem' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'redeem'} aria-controls="redeem-rewards-panel" onClick={() => setMode('redeem')}>
+        <button id="redeem-rewards-tab" className={`reward-mode-tab reward-mode-redeem ${mode === 'redeem' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'redeem'} aria-controls="redeem-rewards-panel" onClick={() => selectMode('redeem')}>
           <span>兌換獎勵</span>{mode === 'redeem' && <img src={`${A}reward-underline.svg`} alt="" />}
         </button>
-        <button id="earn-points-tab" className={`reward-mode-tab reward-mode-earn ${mode === 'earn' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'earn'} aria-controls="earn-points-panel" onClick={() => setMode('earn')}>
+        <button id="earn-points-tab" className={`reward-mode-tab reward-mode-earn ${mode === 'earn' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'earn'} aria-controls="earn-points-panel" onClick={() => selectMode('earn')}>
           <span>賺積分當錢花</span>{mode === 'earn' && <img src={`${A}earn-underline.svg`} alt="" />}
         </button>
       </div>
       {mode === 'redeem' ? <>
-        <div className="tabs">{labels.map((label, i) => <button type="button" className={tab === i ? 'selected' : ''} onClick={() => setTab(i)} key={label}>{label}</button>)}</div>
+        <div className="tabs">{labels.map((label, i) => <button type="button" className={tab === i ? 'selected' : ''} onClick={() => selectRewardTab(i)} key={label}>{label}</button>)}</div>
         {tab === 2 ? <MainlandRewards onOpenDetail={openDetail} /> : <div className="reward-rows" id="redeem-rewards-panel" role="tabpanel" aria-labelledby="redeem-rewards-tab">
           <div className="reward-row"><RewardCard onOpenDetail={openDetail} /><RewardCard kind="wechat" /></div>
           <div className="reward-row reward-row-second"><RewardCard onOpenDetail={openDetail} /><RewardCard kind="wechat" /></div>
@@ -475,6 +499,7 @@ function Rewards() {
 }
 
 function ProjectSwitcher() {
+  const { completeStep } = usePrototypeExperience()
   const [open, setOpen] = useState(false)
   const switcherRef = useRef(null)
 
@@ -514,7 +539,7 @@ function ProjectSwitcher() {
           <span className="project-switcher-item current" role="menuitem" aria-current="page">
             <span><strong>WePoints 積分</strong><small>目前作品</small></span><b aria-hidden="true">✓</b>
           </span>
-          <a className="project-switcher-item" href="https://other.tangxinyi.fun/" role="menuitem">
+          <a className="project-switcher-item" href="https://other.tangxinyi.fun/" role="menuitem" onClick={() => completeStep(6)}>
             <span><strong>其他 Coding 內容</strong><small>蹲個後續</small></span><b aria-hidden="true">↗</b>
           </a>
         </nav>
@@ -527,12 +552,17 @@ function App() {
   return (
     <>
       <ProjectSwitcher />
-      <main className="phone">
-        <div className="top-gradient"><StatusBar /><Header /><div className="content"><PointsHero /><CheckinCard /><SpendingCard /><div className="promo"><b>百佳門店增值滿HK$1,000</b><span>可得HK$5百佳優惠券1張</span><strong>HK$<em>5</em></strong></div></div></div>
-        <Rewards />
-      </main>
+      <div className="prototype-shell">
+        <div className="prototype-demo">
+          <main className="phone">
+            <div className="top-gradient"><StatusBar /><Header /><div className="content"><PointsHero /><CheckinCard /><SpendingCard /><div className="promo"><b>百佳門店增值滿HK$1,000</b><span>可得HK$5百佳優惠券1張</span><strong>HK$<em>5</em></strong></div></div></div>
+            <Rewards />
+          </main>
+        </div>
+        <PrototypeGuide />
+      </div>
     </>
   )
 }
 
-createRoot(document.getElementById('root')).render(<App />)
+createRoot(document.getElementById('root')).render(<PrototypeExperienceProvider><App /></PrototypeExperienceProvider>)
