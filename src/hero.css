@@ -74,6 +74,8 @@
 }
 
 .points-total b {
+  position: relative;
+  top: 2px;
   width: 54px;
   height: 34px;
   color: #000;
