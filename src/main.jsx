@@ -92,14 +92,30 @@ function CheckinCard() {
         <div className="checkin-actions"><span>簽到提醒</span><button className={`switch ${reminder ? 'on' : ''}`} onClick={() => setReminder(v => !v)} aria-label="簽到提醒"><i /></button><button className={`success ${checkedIn ? 'signed' : ''}`} onClick={handleCheckin} disabled={checkedIn}>{checkedIn ? '簽到成功' : '立刻簽到'}</button></div>
       </div>
       <div className="checkin-days">
-        {checkins.map((value, index) => (
-          <div className={`day ${index === 1 ? 'active' : ''} ${checkedIn && index === 0 ? 'muted' : ''} ${checkedIn && index === 2 ? 'earned' : ''}`} key={index}>
-            <div className="day-icon">{index === 1 || (checkedIn && index === 2) ? <span>✓</span> : <img src={index === 6 ? `${A}raw-04.png` : `${A}raw-09.png`} alt="" />}<small>+{value}</small></div>
-            <span>{index === 2 ? '今天' : `第${index + 1}天`}</span>
-          </div>
-        ))}
+        {checkins.map((value, index) => {
+          const completed = index === 1 || (checkedIn && index === 2)
+          const artType = index === 6 ? 'bag' : [2, 4, 5].includes(index) ? 'coin-50' : 'coin-10'
+          const artSource = index === 6 ? `${A}checkin-bag.png` : artType === 'coin-50' ? `${A}checkin-coin-50.png` : `${A}checkin-coin-10.png`
+
+          return (
+            <div className={`day ${index === 1 ? 'active' : ''} ${checkedIn && index === 0 ? 'muted' : ''} ${checkedIn && index === 2 ? 'earned' : ''}`} key={index}>
+              <div className="day-icon">
+                <div className={`day-icon-content ${completed ? 'complete' : ''}`}>
+                  {completed
+                    ? <img className="checkin-complete-icon" src={`${A}checkin-complete.svg`} alt="" />
+                    : <span className={`checkin-day-art ${artType}`}><img src={artSource} alt="" /></span>}
+                  <small>+{value}</small>
+                </div>
+              </div>
+              <span>{index === 2 ? '今天' : `第${index + 1}天`}</span>
+            </div>
+          )
+        })}
       </div>
-      <div className="checkin-foot"><span className="note-dot">▣</span><span>【限時】指定線上消費得5倍積分</span><button type="button">查看更多 ›</button></div>
+      <div className="checkin-foot">
+        <div className="checkin-foot-copy"><img className="checkin-note" src={`${A}checkin-note.svg`} alt="" /><span>【限時】指定線上消費得5倍積分</span></div>
+        <button type="button"><span>查看更多</span><img src={`${A}checkin-arrow.svg`} alt="" /></button>
+      </div>
       {showCheckinToast && <div className="checkin-toast" role="status" aria-live="polite">簽到成功</div>}
     </section>
   )
