@@ -12,6 +12,7 @@ import './prototype-guide.css'
 import { PrototypeExperienceProvider, PrototypeGuide, usePrototypeExperience } from './prototype-experience'
 
 const A = '/assets/'
+const EARN_REWARDS_HEIGHT = 701
 
 const mainlandDouyinItems = Array.from({ length: 4 }, () => ({ merchant: '抖音', value: 2, points: 2500, width: 98 }))
 const mainlandJdItems = [
@@ -336,7 +337,7 @@ function MainlandRewards({ onOpenDetail }) {
   )
 }
 
-function VoucherDetail({ onClose }) {
+function VoucherDetail({ onClose, onEarnPoints }) {
   const overlayRef = useRef(null)
   const closeRef = useRef(null)
   const earnRef = useRef(null)
@@ -429,7 +430,7 @@ function VoucherDetail({ onClose }) {
             </div>
             <span>還差300積分</span>
           </div>
-          <button className="voucher-detail-earn" type="button" ref={earnRef}>立即賺積分</button>
+          <button className="voucher-detail-earn" type="button" onClick={onEarnPoints} ref={earnRef}>立即賺積分</button>
         </div>
       </section>
     </div>
@@ -487,7 +488,9 @@ function Rewards() {
   const [mode, setMode] = useState('redeem')
   const [tab, setTab] = useState(0)
   const [detailOpen, setDetailOpen] = useState(false)
+  const [earnScrollGuard, setEarnScrollGuard] = useState(0)
   const detailOpenerRef = useRef(null)
+  const earnTabRef = useRef(null)
   const labels = ['限時搶購', '我能兌換', '內地優惠', '本港優惠', '匯款/繳費']
   const openDetail = (event) => {
     detailOpenerRef.current = event.currentTarget
@@ -498,11 +501,24 @@ function Rewards() {
     setDetailOpen(false)
     window.requestAnimationFrame(() => detailOpenerRef.current?.focus())
   }, [])
+  const earnFromDetail = React.useCallback(() => {
+    const lockedScrollY = Math.abs(Number.parseFloat(document.body.style.top) || window.scrollY)
+    const rewardsHeight = document.querySelector('.rewards')?.getBoundingClientRect().height || EARN_REWARDS_HEIGHT
+    const targetPageHeight = document.body.scrollHeight - rewardsHeight + EARN_REWARDS_HEIGHT
+    const requiredScrollSpace = Math.max(0, Math.ceil(lockedScrollY + window.innerHeight - targetPageHeight))
+
+    setEarnScrollGuard(requiredScrollSpace)
+    setMode('earn')
+    setDetailOpen(false)
+    completeStep(5)
+    window.requestAnimationFrame(() => earnTabRef.current?.focus({ preventScroll: true }))
+  }, [completeStep])
   const selectRewardTab = (index) => {
     setTab(index)
     if (index === 2) completeStep(4)
   }
   const selectMode = (nextMode) => {
+    setEarnScrollGuard(0)
     setMode(nextMode)
     if (nextMode === 'earn') completeStep(5)
   }
@@ -514,7 +530,7 @@ function Rewards() {
         <button id="redeem-rewards-tab" className={`reward-mode-tab reward-mode-redeem ${mode === 'redeem' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'redeem'} aria-controls="redeem-rewards-panel" onClick={() => selectMode('redeem')}>
           <span>兌換獎勵</span>{mode === 'redeem' && <img src={`${A}reward-underline.svg`} alt="" />}
         </button>
-        <button id="earn-points-tab" className={`reward-mode-tab reward-mode-earn ${mode === 'earn' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'earn'} aria-controls="earn-points-panel" onClick={() => selectMode('earn')}>
+        <button id="earn-points-tab" className={`reward-mode-tab reward-mode-earn ${mode === 'earn' ? 'active' : ''}`} type="button" role="tab" aria-selected={mode === 'earn'} aria-controls="earn-points-panel" onClick={() => selectMode('earn')} ref={earnTabRef}>
           <span>賺積分當錢花</span>{mode === 'earn' && <img src={`${A}earn-underline.svg`} alt="" />}
         </button>
       </div>
@@ -526,7 +542,8 @@ function Rewards() {
         </div>}
       </> : <EarnPointsPanel />}
     </section>
-    {detailOpen && <VoucherDetail onClose={closeDetail} />}
+    {mode === 'earn' && earnScrollGuard > 0 && <div style={{ height: `${earnScrollGuard}px` }} aria-hidden="true" />}
+    {detailOpen && <VoucherDetail onClose={closeDetail} onEarnPoints={earnFromDetail} />}
     </>
   )
 }
