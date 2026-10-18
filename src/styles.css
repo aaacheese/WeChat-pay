@@ -4,6 +4,7 @@
 .spending-card .section-row{height:20px;margin:0 0 10px}
 .spending-card .section-row b{font-size:14px;font-weight:500;letter-spacing:-.56px;color:#333}
 .spending-card .section-row button{display:flex;align-items:center;padding:0 2px 0 0;font-size:12px;color:#999}
+.more-link-arrow{display:block;flex:0 0 12px;width:12px;height:12px;transform:rotate(180deg)}
 .coupon-strip{width:349px;height:132px;display:flex;align-items:center;gap:6px;padding:1px 0;overflow-x:auto;overflow-y:hidden;border-radius:0;background:transparent;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain;touch-action:pan-x;cursor:grab}
 .coupon-strip:active{cursor:grabbing}
 .coupon-strip,.coupon-strip *{user-select:none;-webkit-user-select:none}

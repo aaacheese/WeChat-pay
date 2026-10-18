@@ -115,7 +115,7 @@ function CheckinCard() {
       </div>
       <div className="checkin-foot">
         <div className="checkin-foot-copy"><img className="checkin-note" src={`${A}checkin-note.svg`} alt="" /><span>【限時】指定線上消費得5倍積分</span></div>
-        <button type="button"><span>查看更多</span><img src={`${A}checkin-arrow.svg`} alt="" /></button>
+        <button type="button"><span>查看更多</span><img className="more-link-arrow" src={`${A}checkin-arrow.svg`} alt="" /></button>
       </div>
       {showCheckinToast && <div className="checkin-toast" role="status" aria-live="polite">簽到成功</div>}
     </section>
@@ -160,7 +160,7 @@ function SpendingCard() {
 
   return (
     <section className="card spending-card">
-      <div className="section-row"><b>消費越多，換領更多獎勵</b><button type="button">查看更多 ›</button></div>
+      <div className="section-row"><b>消費越多，換領更多獎勵</b><button type="button"><span>查看更多</span><img className="more-link-arrow" src={`${A}checkin-arrow.svg`} alt="" /></button></div>
       <div
         className="coupon-strip"
         aria-label="優惠券，可橫向滑動"
